@@ -1,87 +1,84 @@
-var lista_de_produtos = []
-
-
+var lista_de_produtos = [];
 
 while (true) {
-
     var opcao = prompt(`
     Bem Vindo ao Cadastro de Produtos :D
 
     1. Cadastrar novo produto
     2. Editar produto
     3. Remover produto
-    4. visualizar todos os produtos
- `)
-     if (opcao == 1) {
-      adicionar()
+    4. Visualizar todos os produtos
+ `);
+
+    if (opcao == 1) {
+        adicionar();
     } else if (opcao == 2) {
-        editar()
+        editar();
     } else if (opcao == 3) {
-        remover()
+        remover();
     } else if (opcao == 4) {
-      ver()
+        ver();
     } else {
-        alert("Nenhum das opções foram selecionadas!")
+        alert("Nenhuma das opções foi selecionada!");
+    }
+}
+
+function adicionar() {
+    var objeto = {
+        produto: '',
+        marca: '',
+        preco: '',
+        quantidade_em_estoque: '',
+    };
+
+    objeto.produto = prompt("Digite o nome do produto:");
+    objeto.marca = prompt("Digite a marca do produto:");
+    objeto.preco = prompt("Digite o preço do produto:");
+    objeto.quantidade_em_estoque = prompt("Digite a quantidade em estoque:");
+
+    lista_de_produtos.push(objeto);
+    alert("Produto registrado!");
+}
+
+function ver() {
+    var texto = "";
+
+    for (let i = 0; i < lista_de_produtos.length; i++) {
+        texto += `Produto: ${lista_de_produtos[i].produto}
+Marca: ${lista_de_produtos[i].marca} 
+Preço: R$ ${lista_de_produtos[i].preco}
+Quantidade em estoque: ${lista_de_produtos[i].quantidade_em_estoque} \n`;
     }
 
-}
-lista = []
-
-function adicionar(){
-var objeto = {
-
-    produto:'',
-    marca:'',
-    preco:'',
-    quantidade_em_estoque:'',
-
+    alert(texto);
 }
 
-objeto.produto = prompt("Digite o nome do produto:")
-objeto.marca = prompt("Digite a marca do produto:")
-objeto.preco = prompt("Digite o preço do produto:")
-objeto.quantidade_em_estoque = prompt("Digite a quantia em estoque:")
+function editar() {
+    var edit = prompt("Digite o nome do produto a ser editado:");
 
-lista_de_produtos.push(objeto)
-alert("Produto registrado!")
-}
-
-
-function ver (){
-
-var texto = ""
-
-for(let i = 0; i < lista_de_produtos.length; i++){
-texto +=`Produto: ${lista_de_produtos[i].produto}
- Marca: ${lista_de_produtos[i].marca} 
- Preço: ${lista_de_produtos[i].preco}
- Quantidade em estoque: ${lista_de_produtos[i].quantidade_em_estoque} \n`
-
-}
-alert(texto)
-}
-
-function editar(){
-    var edit = prompt("edite o produto desejado")
-    var objeto = {     
-        produto:prompt("Digite o nome do produto:"),
-        marca: prompt("Digite a marca do produto:"), 
-        preco:prompt("Digite o preço do produto:")
+    for (let i = 0; i < lista_de_produtos.length; i++) {
+        if (lista_de_produtos[i].produto === edit) {
+            lista_de_produtos[i].produto = prompt("Digite o novo nome do produto:");
+            lista_de_produtos[i].marca = prompt("Digite a nova marca do produto:");
+            lista_de_produtos[i].preco = prompt("Digite o novo preço do produto:");
+            alert("Produto editado com sucesso!");
+            return;
+        }
     }
 
-    var texto = `Produto: ${objeto.produto}
-
-\n Marca: ${objeto.marca}
-
-\n Preço: ${objeto.preco}`;
-
-objeto[edit] = texto
+    alert("Produto não encontrado.");
 }
 
+function remover() {
+    var produto_a_remover = prompt("Digite o nome do produto a ser removido:");
 
+    for (let i = 0; i < lista_de_produtos.length; i++) {
+        if (lista_de_produtos[i].produto === produto_a_remover) {
+            lista_de_produtos.splice(i, 1);
+            alert("Produto removido com sucesso!");
+            return;
+        }
+    }
 
-
-
-function remover(){
-    splice(i, 1)
+    alert("Produto não encontrado.");
 }
