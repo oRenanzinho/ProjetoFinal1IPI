@@ -8,7 +8,7 @@ while (true) {
     2. Editar produto
     3. Remover produto
     4. Visualizar todos os produtos
- `);
+    `);
 
     if (opcao == 1) {
         adicionar();
@@ -54,13 +54,14 @@ Quantidade em estoque: ${lista_de_produtos[i].quantidade_em_estoque} \n`;
 }
 
 function editar() {
-    var edit = prompt("Digite o nome do produto a ser editado:");
+    var edit = prompt("Selecione o produto a ser editado:\n\n" + listarProdutosParaEdicao());
 
     for (let i = 0; i < lista_de_produtos.length; i++) {
         if (lista_de_produtos[i].produto === edit) {
             lista_de_produtos[i].produto = prompt("Digite o novo nome do produto:");
             lista_de_produtos[i].marca = prompt("Digite a nova marca do produto:");
             lista_de_produtos[i].preco = prompt("Digite o novo preço do produto:");
+            lista_de_produtos[i].quantidade_em_estoque = prompt("Digite a nova quantia em estoque:");
             alert("Produto editado com sucesso!");
             return;
         }
@@ -69,8 +70,16 @@ function editar() {
     alert("Produto não encontrado.");
 }
 
+function listarProdutosParaEdicao() {
+    var lista = "Produtos disponíveis para edição:\n\n";
+    for (let i = 0; i < lista_de_produtos.length; i++) {
+        lista += lista_de_produtos[i].produto + "\n";
+    }
+    return lista;
+}
+
 function remover() {
-    var produto_a_remover = prompt("Digite o nome do produto a ser removido:");
+    var produto_a_remover = prompt("Selecione o produto a ser removido:\n\n" + listarProdutosParaRemocao());
 
     for (let i = 0; i < lista_de_produtos.length; i++) {
         if (lista_de_produtos[i].produto === produto_a_remover) {
@@ -81,4 +90,12 @@ function remover() {
     }
 
     alert("Produto não encontrado.");
+}
+
+function listarProdutosParaRemocao() {
+    var lista = "Produtos disponíveis para remoção:\n\n";
+    for (let i = 0; i < lista_de_produtos.length; i++) {
+        lista += lista_de_produtos[i].produto + "\n";
+    }
+    return lista;
 }
